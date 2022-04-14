@@ -1,0 +1,26 @@
+public class AmazonDeliveryPanel {
+
+		
+	private static void findParcelDays(int[] parcels) {
+	    int minDeliveryDays = 0;
+	    Arrays.sort(parcels);
+	    int minValue = findMinValue(parcels);
+	    while(minValue > 0) {
+	        for (int i = 0; i < parcels.length; i++) {
+	            if (parcels[i] > 0)
+	                parcels[i] = parcels[i] - minValue;
+	        }
+	        ++minDeliveryDays;
+	        minValue = findMinValue(parcels);
+	    }
+	    System.out.println("Min delivery days :: "+ minDeliveryDays);
+	}
+
+	private static int findMinValue(int[] parcels) {
+	    for (int parcel : parcels) {
+	        if (parcel > 0) {
+	            return parcel;
+	        }
+	    }
+	    return 0;
+	}
